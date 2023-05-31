@@ -19,6 +19,7 @@ class XMLParser
 public:
     XMLParser();
     string ReadXML(const string filename);
+    string getContent(const string& raw_xml, const string& tag);
     stack<string> enumTags(const string& xml) const;
     string isolateTags(const string& text);
 };

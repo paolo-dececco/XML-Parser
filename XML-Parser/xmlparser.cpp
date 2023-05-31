@@ -24,11 +24,27 @@ string XMLParser::ReadXML(const string filename){
 
 bool XMLParser::HasChild(const string& raw_xml){
     unsigned int
-    while
+
 }
 
 stack<string> XMLParser::enumTags(const string& raw_xml) const {
 
+}
+
+string XMLParser::getContent(const string& raw_xml, const string& tag){
+    unsigned int start, pos=0;
+
+    //Begin tag
+    start=raw_xml.find("<"+tag+">",pos);
+    if (start==string::npos)
+        throw tag_not_found_exception();
+    start=raw_xml.find(">",start);
+    start++;
+
+    pos=raw_xml.find("</"+tag+">",start);
+    if (pos==string::npos)
+        throw bad_xml_exception();
+    return raw_xml.substr(start,pos-start);
 }
 
 string XMLParser::isolateTags(const string& text){
@@ -43,6 +59,6 @@ string XMLParser::isolateTags(const string& text){
     // Posso usare < nel testo normale
     while (text.find("<",start)!=string::npos)
             start=text.find("<",start);
-    return text.substr(start,pos-start+1);
+    return text.substr(start,pos-start);
 
 }

@@ -8,6 +8,7 @@ using namespace std;
 class XMLContent
 {
     string _tagName;
+    string _id;
 public:
     XMLContent();
     XMLContent(string tagName);

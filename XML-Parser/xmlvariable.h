@@ -9,7 +9,6 @@ class XMLVariable : XMLContent
 public:
     XMLVariable();
     XMLVariable(string);
-
 };
 
 #endif // XMLVARIABLE_H
