@@ -8,8 +8,8 @@
 class XMLElement : XMLContent
 {
 private:
-    std::vector<XMLElement> _childrens;
-    std::vector<XMLVariable> _variables;
+    vector<XMLElement> _childrens;
+    vector<XMLVariable> _variables;
 
 public:
     XMLElement();
@@ -17,8 +17,13 @@ public:
     void AddVariable();
 
     // Gets
-    vector<XMLElement> ChildElem();
-    vector<XMLVariable> Variables();
+    vector<XMLElement> ChildElem() const;
+    vector<XMLVariable> Variables() const;
 
+    // Sets
+    void appendChild(XMLElement& c);
+    void appendVar(XMLVariable& v);
+    bool isRoot;
 
 };
+#endif
