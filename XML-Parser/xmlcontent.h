@@ -7,6 +7,7 @@ using namespace std;
 
 class XMLContent
 {
+protected:
     string _tagName;
     string _id;
 public:

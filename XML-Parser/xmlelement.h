@@ -5,7 +5,7 @@
 #include "xmlcontent.h"
 #include "xmlvariable.h"
 
-class XMLElement : XMLContent
+class XMLElement : public XMLContent
 {
 private:
     vector<XMLElement> _childrens;
@@ -13,17 +13,16 @@ private:
 
 public:
     XMLElement();
-    void AddChildElement();
-    void AddVariable();
+    XMLElement(string);
 
     // Gets
     vector<XMLElement> ChildElem() const;
     vector<XMLVariable> Variables() const;
 
     // Sets
-    void appendChild(XMLElement& c);
-    void appendVar(XMLVariable& v);
+    void AddChildElement(XMLElement& c);
+    void AddVariable(XMLVariable& v);
     bool isRoot;
-
 };
+std::ostream& operator<<(std::ostream &os,XMLElement elem);
 #endif
