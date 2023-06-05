@@ -20,7 +20,6 @@ string XMLParser::ReadXML(const string filename){
         xml_file_read_exception();
     }
     f.close();
-    std::cout << "Reading -> OK" << endl;
     return raw_file;
 }
 
