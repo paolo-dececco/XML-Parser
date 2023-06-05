@@ -18,9 +18,9 @@ struct TextLimit {
     unsigned int start;
     unsigned int end;
 
-    TextLimit() : start(0),end(0) {};
-    TextLimit(unsigned int &s, unsigned int &e) : start(s),end(e) {};
-    TextLimit operator+(int pos) {return TextLimit(start+=pos,end+=pos); };
+    TextLimit() : start(0),end(0) {}
+    TextLimit(unsigned int &s, unsigned int &e) : start(s),end(e) {}
+    TextLimit operator+(int pos) {return TextLimit(start+=pos,end+=pos); }
 };
 
 class XMLParser
