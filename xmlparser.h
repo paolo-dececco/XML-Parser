@@ -1,5 +1,12 @@
-#ifdef XMLPARSER_DLL_EXPORT
-#define XML_API __declspec(dllexport)
+
+#ifdef _WIN32
+    #ifdef XMLPARSER_DLL_EXPORT
+        #define XML_API __declspec(dllexport)
+    #else
+        #define XML_API __declspec(dllimport)
+    #endif
+#else
+    #define XML_API
 #endif
 
 #ifndef XMLPARSER_H
