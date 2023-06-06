@@ -9,6 +9,9 @@
     #define XML_API
 #endif
 
+/* Define calling convention*/
+#define ADDCALL __cdecl
+
 #ifndef XMLPARSER_H
 #define XMLPARSER_H
 
@@ -34,24 +37,21 @@ struct TextLimit {
     TextLimit operator+(int pos) {return TextLimit(start+=pos,end+=pos); }
 };
 
+
 class XMLParser
 {
     bool HasChild(const string& raw_xml);
     bool HasChildTL(const string& raw_xml, const TextLimit& tl);
     string getStringFromTL(const string& raw_xml, const TextLimit tl);
     XMLElement _XMLParserHelper(const string raw_xml,const string tagName);
-
-public:
-    XMLParser();
-    XML_API string ReadXML(const string filename);
     string getContent(const string& raw_xml, const string& tag);
     TextLimit getTLContent(const string& raw_xml, const string& tag);
     stack<string> enumTags(const string& xml) const;
     string getFirstTag(const string& text) const;
     string getFirstTagfromPos(const string& text,const unsigned int pos) const;
+public:
+    XML_API XMLParser();
+    XML_API string ReadXML(const string filename);
     XML_API XMLElement XMLParse(const string& raw_xml);
 };
-
-
-
 #endif // XMLPARSER_H
