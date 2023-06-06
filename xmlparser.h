@@ -1,3 +1,14 @@
+
+#ifdef _WIN32
+    #ifdef XMLPARSER_DLL_EXPORT
+        #define XML_API __declspec(dllexport)
+    #else
+        #define XML_API __declspec(dllimport)
+    #endif
+#else
+    #define XML_API
+#endif
+
 #ifndef XMLPARSER_H
 #define XMLPARSER_H
 
@@ -25,7 +36,6 @@ struct TextLimit {
 
 class XMLParser
 {
-    template<typename T> bool stack_finder(stack<T> stk, T name);
     bool HasChild(const string& raw_xml);
     bool HasChildTL(const string& raw_xml, const TextLimit& tl);
     string getStringFromTL(const string& raw_xml, const TextLimit tl);
@@ -33,13 +43,13 @@ class XMLParser
 
 public:
     XMLParser();
-    string ReadXML(const string filename);
+    XML_API string ReadXML(const string filename);
     string getContent(const string& raw_xml, const string& tag);
     TextLimit getTLContent(const string& raw_xml, const string& tag);
     stack<string> enumTags(const string& xml) const;
     string getFirstTag(const string& text) const;
     string getFirstTagfromPos(const string& text,const unsigned int pos) const;
-    XMLElement XMLParse(const string& raw_xml);
+    XML_API XMLElement XMLParse(const string& raw_xml);
 };
 
 
