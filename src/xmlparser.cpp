@@ -8,7 +8,7 @@ XMLParser::XMLParser()
 
 }
 
-string XMLParser::ReadXML(const string filename){
+XML_API string XMLParser::ReadXML(const string filename){
     string raw_file;
     char c;
 
@@ -151,7 +151,7 @@ XMLElement XMLParser::XMLParse(const string& raw_xml){
     return root_Elem;
 }
 
-XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string tagName){
+XML_API XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string tagName){
     // Used for building XMLElement
     unsigned int pos=0;
     XMLElement root(tagName);
