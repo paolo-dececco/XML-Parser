@@ -1,11 +1,21 @@
 #ifndef XMLELEMENT_H
 #define XMLELEMENT_H
 
+#ifdef _WIN32
+    #ifdef XMLPARSER_DLL_EXPORT
+        #define XML_API __declspec(dllexport)
+    #else
+        #define XML_API __declspec(dllimport)
+    #endif
+#else
+    #define XML_API
+#endif
+
 #include <vector>
 #include "xmlcontent.h"
 #include "xmlvariable.h"
 
-class XMLElement : public XMLContent
+class XML_API XMLElement : public XMLContent
 {
 private:
     vector<XMLElement> _childrens;
@@ -24,5 +34,5 @@ public:
     void AddVariable(XMLVariable& v);
     bool isRoot;
 };
-std::ostream& operator<<(std::ostream &os,XMLElement elem);
+XML_API std::ostream& operator<<(std::ostream &os,XMLElement elem);
 #endif
