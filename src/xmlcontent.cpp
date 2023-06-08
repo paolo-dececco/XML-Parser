@@ -1,8 +1,11 @@
 #include "xmlcontent.h"
 
-XMLContent::XMLContent() : _tagName("") {}
+XMLContent::XMLContent() {
+    XMLContent("");
+}
 
-XMLContent::XMLContent(string tagName) : _tagName(tagName) {}
+XMLContent::XMLContent(string tagName) : _tagName(tagName) {
+}
 
 const string XMLContent::getTagName() const {
     return _tagName;

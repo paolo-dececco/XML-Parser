@@ -12,17 +12,22 @@
 #endif
 
 #include "xmlcontent.h"
+#include "xmlelement.h"
 #include <iostream>
 
 class XML_API XMLVariable : public XMLContent
 {
     string _value;
+    XMLElement* _parent;
 public:
     XMLVariable();
-    XMLVariable(string);
-    XMLVariable(string,string);
+    XMLVariable(XMLElement*,string);
+    XMLVariable(XMLElement*,string,string);
     const string getValue() const;
     void setValue(string);
+    string getId();
+    void setParent(XMLElement*);
+    XMLVariable* operator*(void); 
 };
 XML_API std::ostream& operator<<(std::ostream &os,XMLVariable variable);
 

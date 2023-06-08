@@ -143,7 +143,7 @@ XMLElement XMLParser::XMLParse(const string& raw_xml){
             root_Elem.AddChildElement(child_elem);
         }
         else {
-            XMLVariable variable_elem(tag_name,getContent(raw_xml.substr(pos),tag_name));
+            XMLVariable variable_elem(*root_Elem,tag_name,getContent(raw_xml.substr(pos),tag_name));
             root_Elem.AddVariable(variable_elem);
         }
         pos=xml_content.end+tag_name.length()+4;
@@ -165,7 +165,7 @@ XML_API XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string
             root.AddChildElement(child_elem);
         }
         else {
-            XMLVariable variable_elem(tag_name,getContent(raw_xml.substr(pos),tag_name));
+            XMLVariable variable_elem(*root,tag_name,getContent(raw_xml.substr(pos),tag_name));
             root.AddVariable(variable_elem);
         }
         pos=xml_content.end+tag_name.length()+4;
