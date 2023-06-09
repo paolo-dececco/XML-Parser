@@ -10,13 +10,13 @@ XMLElement::XMLElement(string tag)
     static unsigned int current_xmlel_id=0;
     _parent=nullptr;
     setTagName(tag);
-    _id=current_xmlel_id++;
+    _id+="XMLel-"+std::to_string(current_xmlel_id++);
 }
 
 XMLElement::XMLElement(XMLElement* parent, string tag) {
     _parent=this;
     setTagName(tag);
-    _id=(this->getId()+"_"+std::to_string(this->getChildrenCount()+1));
+    _id+="XMLel-"+(this->getId()+"_"+std::to_string(this->getChildrenCount()+1));
 }
 
 vector<XMLElement> XMLElement::ChildElem() const {
@@ -99,4 +99,8 @@ XMLVariable* XMLElement::FindVariableById(string id){
            ptr=c.FindVariableById(id);
         return ptr;
     }
+}
+
+const XMLElement* XMLElement::getParent() const{
+    return _parent;
 }

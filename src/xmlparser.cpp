@@ -129,7 +129,9 @@ XML_API XMLElement XMLParser::XMLParse(const string& raw_xml){
     unsigned int pos=0;
     string tag_name = getFirstTag(raw_xml);
     if (tag_name.find("?",pos)!=string::npos)   //skip xmlVersion
-            pos=tag_name.length()+2;
+        pos=tag_name.length()+2;
+    else if (tag_name.find("!",pos)!=string::npos) 
+        pos=tag_name.length()+2;
     tag_name = getFirstTagfromPos(raw_xml,pos);
     XMLElement root_Elem(tag_name);
     TextLimit root_xml_content = getTLContent(raw_xml,tag_name);

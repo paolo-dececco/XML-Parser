@@ -24,6 +24,8 @@ public:
     XMLVariable();
     XMLVariable(XMLElement*,string);
     XMLVariable(XMLElement*,string,string);
+
+    const XMLElement* getParent() const;
     const string getValue() const;
     void setValue(string);
     void setParent(XMLElement*);

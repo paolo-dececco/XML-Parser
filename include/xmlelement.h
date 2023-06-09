@@ -36,6 +36,7 @@ public:
     void AddChildElement(XMLElement& c);
     const unsigned int getChildrenCount() const;
     unsigned int getVariablesCount() const;
+    const XMLElement* getParent() const;
     void setParent(XMLElement*);
     void AddVariable(XMLVariable&);
     bool hasChild() const;
