@@ -1,4 +1,5 @@
 #include "xmlvariable.h"
+#include "xmlelement.h"
 
 XMLVariable::XMLVariable()
 {
@@ -21,10 +22,6 @@ const string XMLVariable::getValue() const{
 
 void XMLVariable::setValue(string val){
     _value=val;
-}
-
-string XMLVariable::getId(){
-    return _id;
 }
 
 void XMLVariable::setParent(XMLElement* parent) {

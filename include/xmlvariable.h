@@ -12,8 +12,9 @@
 #endif
 
 #include "xmlcontent.h"
-#include "xmlelement.h"
 #include <iostream>
+
+class XMLElement;
 
 class XML_API XMLVariable : public XMLContent
 {
@@ -25,7 +26,6 @@ public:
     XMLVariable(XMLElement*,string,string);
     const string getValue() const;
     void setValue(string);
-    string getId();
     void setParent(XMLElement*);
     XMLVariable* operator*(void); 
 };

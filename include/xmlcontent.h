@@ -20,12 +20,12 @@ class XML_API XMLContent
 protected:
     string _tagName;
     string _id;
-
+    
 public:
     XMLContent();
     XMLContent(string tagName);
     const string getTagName() const;
-    virtual const string getId() const;
+    const string getId() const;
     void setTagName(string);
 };
 

@@ -125,7 +125,7 @@ string XMLParser::getFirstTagfromPos(const string& text,const unsigned int pos) 
 
 }
 
-XMLElement XMLParser::XMLParse(const string& raw_xml){
+XML_API XMLElement XMLParser::XMLParse(const string& raw_xml){
     unsigned int pos=0;
     string tag_name = getFirstTag(raw_xml);
     if (tag_name.find("?",pos)!=string::npos)   //skip xmlVersion
@@ -151,7 +151,7 @@ XMLElement XMLParser::XMLParse(const string& raw_xml){
     return root_Elem;
 }
 
-XML_API XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string tagName){
+XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string tagName){
     // Used for building XMLElement
     unsigned int pos=0;
     XMLElement root(tagName);

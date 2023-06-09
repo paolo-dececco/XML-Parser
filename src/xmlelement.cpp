@@ -32,12 +32,21 @@ void XMLElement::AddChildElement(XMLElement& c){
     _childrens.push_back(c);
 }
 
+const unsigned int XMLElement::getChildrenCount() const{
+    return static_cast<unsigned int>(_childrens.size());
+}
+
+
+unsigned int XMLElement::getVariablesCount() const{
+    return static_cast<unsigned int>(_variables.size());
+}
+
 void XMLElement::AddVariable(XMLVariable& v){
     v.setParent(this);
     _variables.push_back(v);
 }
 
-std::ostream& operator<<(std::ostream &os,XMLElement elem){
+XML_API std::ostream& operator<<(std::ostream &os,XMLElement elem){
     os << elem.getTagName() << ": [" << endl;
 
     for (XMLElement& c : elem.ChildElem()) {
@@ -59,14 +68,6 @@ bool XMLElement::isRoot() {
     return (_parent==nullptr);
 }
 
-const unsigned int XMLElement::getChildrenCount() const{
-    return static_cast<unsigned int>(_childrens.size());
-}
-
-unsigned int XMLElement::getVariablesCount() const{
-    return static_cast<unsigned int>(_variables.size());
-}
-
 XMLElement* XMLElement::operator*(void){
     return this;
 }
@@ -86,10 +87,11 @@ bool XMLElement::hasChild() const{
     return (_childrens.size()==0);
 }
 
+
 XMLVariable* XMLElement::FindVariableById(string id){
     for (XMLVariable v : _variables) {
         if (v.getId()==id)
-            return &v;
+            return *v;
     }
     XMLVariable* ptr=nullptr;
     if (hasChild()) {

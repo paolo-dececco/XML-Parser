@@ -14,3 +14,7 @@ const string XMLContent::getTagName() const {
 void XMLContent::setTagName(string tagName) {
     _tagName = tagName;
 }
+
+const string XMLContent::getId() const{
+    return _id;
+}

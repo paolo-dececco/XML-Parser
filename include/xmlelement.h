@@ -40,7 +40,6 @@ public:
     void AddVariable(XMLVariable&);
     bool hasChild() const;
     bool isRoot();
-    const string getId() const;
     XMLElement* FindById(string);
     XMLVariable* FindVariableById(string);
     XMLElement* operator*(void); 
