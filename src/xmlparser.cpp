@@ -125,7 +125,7 @@ string XMLParser::getFirstTagfromPos(const string& text,const unsigned int pos) 
 
 }
 
-XMLElement XMLParser::XMLParse(const string& raw_xml){
+XML_API XMLElement XMLParser::XMLParse(const string& raw_xml){
     unsigned int pos=0;
     string tag_name = getFirstTag(raw_xml);
     if (tag_name.find("?",pos)!=string::npos)   //skip xmlVersion
@@ -143,7 +143,7 @@ XMLElement XMLParser::XMLParse(const string& raw_xml){
             root_Elem.AddChildElement(child_elem);
         }
         else {
-            XMLVariable variable_elem(tag_name,getContent(raw_xml.substr(pos),tag_name));
+            XMLVariable variable_elem(*root_Elem,tag_name,getContent(raw_xml.substr(pos),tag_name));
             root_Elem.AddVariable(variable_elem);
         }
         pos=xml_content.end+tag_name.length()+4;
@@ -151,7 +151,7 @@ XMLElement XMLParser::XMLParse(const string& raw_xml){
     return root_Elem;
 }
 
-XML_API XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string tagName){
+XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string tagName){
     // Used for building XMLElement
     unsigned int pos=0;
     XMLElement root(tagName);
@@ -165,7 +165,7 @@ XML_API XMLElement XMLParser::_XMLParserHelper(const string raw_xml,const string
             root.AddChildElement(child_elem);
         }
         else {
-            XMLVariable variable_elem(tag_name,getContent(raw_xml.substr(pos),tag_name));
+            XMLVariable variable_elem(*root,tag_name,getContent(raw_xml.substr(pos),tag_name));
             root.AddVariable(variable_elem);
         }
         pos=xml_content.end+tag_name.length()+4;
