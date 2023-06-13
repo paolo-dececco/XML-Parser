@@ -6,6 +6,12 @@ XMLVariable::XMLVariable()
 
 }
 
+XMLVariable::~XMLVariable()
+{
+
+}
+
+
 XMLVariable::XMLVariable(XMLElement* parent, string tag) : _parent(parent),_value("") {
     this->setTagName(tag);
     _id=_parent->getId()+".Var:"+tag;

@@ -3,6 +3,10 @@
 XMLContent::XMLContent() {
     XMLContent("");
 }
+    
+XMLContent::~XMLContent() {
+
+}
 
 XMLContent::XMLContent(string tagName) : _tagName(tagName) {
 }

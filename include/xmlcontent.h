@@ -1,32 +1,25 @@
 #ifndef XMLCONTENT_H
 #define XMLCONTENT_H
 
-#ifdef _WIN32
-    #ifdef XMLPARSER_DLL_EXPORT
-        #define XML_API __declspec(dllexport)
-    #else
-        #define XML_API __declspec(dllimport)
-    #endif
-#else
-    #define XML_API
-#endif
-
+#include "xmlparser_types.h"
 #include <string>
+
 
 using namespace std;
 
-class XML_API XMLContent
+class XMLContent
 {
 protected:
     string _tagName;
     string _id;
     
 public:
-    XMLContent();
-    XMLContent(string tagName);
-    const string getTagName() const;
-    const string getId() const;
-    void setTagName(string);
+    XML_API XMLContent();
+    XML_API ~XMLContent();
+    XML_API XMLContent(string tagName);
+    XML_API const ADDCALL string getTagName() const;
+    XML_API const ADDCALL string getId() const;
+    XML_API void ADDCALL setTagName(string);
 };
 
 #endif // XMLCONTENT_H
