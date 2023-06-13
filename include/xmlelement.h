@@ -1,21 +1,14 @@
+
+
 #ifndef XMLELEMENT_H
 #define XMLELEMENT_H
 
-#ifdef _WIN32
-    #ifdef XMLPARSER_DLL_EXPORT
-        #define XML_API __declspec(dllexport)
-    #else
-        #define XML_API __declspec(dllimport)
-    #endif
-#else
-    #define XML_API
-#endif
-
 #include <vector>
+#include "xmlparser_types.h"
 #include "xmlcontent.h"
 #include "xmlvariable.h"
 
-class XML_API XMLElement : public XMLContent
+class XMLElement : public XMLContent
 {
 private:
     vector<XMLElement> _childrens;
@@ -24,25 +17,32 @@ private:
     static unsigned int current_xmlel_id;
 
 public:
-    XMLElement();
-    XMLElement(string);
-    XMLElement(XMLElement*,string);
+    XML_API XMLElement();
+    XML_API ~XMLElement();
+    XML_API XMLElement(string);
+    XML_API XMLElement(XMLElement*,string);
 
     // Gets
-    vector<XMLElement> ChildElem() const;
-    vector<XMLVariable> getVariables() const;
+    XML_API vector<XMLElement> ADDCALL ChildElem() const;
+    XML_API vector<XMLVariable> ADDCALL getVariables() const;
 
     // Sets
-    void AddChildElement(XMLElement& c);
-    const unsigned int getChildrenCount() const;
-    unsigned int getVariablesCount() const;
-    void setParent(XMLElement*);
-    void AddVariable(XMLVariable&);
-    bool hasChild() const;
-    bool isRoot();
-    XMLElement* FindById(string);
-    XMLVariable* FindVariableById(string);
-    XMLElement* operator*(void); 
+    XML_API void ADDCALL AddChildElement(XMLElement& c);
+    XML_API void ADDCALL AddVariable(XMLVariable&);
+
+    XML_API const unsigned int ADDCALL getChildrenCount() const;
+    XML_API unsigned int ADDCALL getVariablesCount() const;
+
+    XML_API const ADDCALL XMLElement* getParent() const;
+    XML_API void ADDCALL setParent(XMLElement*);
+
+    XML_API bool ADDCALL hasChild() const;
+    XML_API bool ADDCALL isRoot();
+    XML_API void ADDCALL clear();
+
+    XML_API XMLElement* ADDCALL FindById(string);
+    XML_API XMLVariable* ADDCALL FindVariableById(string);
+    XML_API XMLElement* ADDCALL operator*(void); 
 };
-XML_API std::ostream& operator<<(std::ostream &os,XMLElement elem);
+std::ostream& operator<<(std::ostream &os,XMLElement elem);
 #endif

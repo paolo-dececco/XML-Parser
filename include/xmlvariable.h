@@ -1,35 +1,29 @@
 #ifndef XMLVARIABLE_H
 #define XMLVARIABLE_H
 
-#ifdef _WIN32
-    #ifdef XMLPARSER_DLL_EXPORT
-        #define XML_API __declspec(dllexport)
-    #else
-        #define XML_API __declspec(dllimport)
-    #endif
-#else
-    #define XML_API
-#endif
-
 #include "xmlcontent.h"
+#include "xmlparser_types.h"
 #include <iostream>
 
 class XMLElement;
 
-class XML_API XMLVariable : public XMLContent
+class XMLVariable : public XMLContent
 {
     string _value;
     XMLElement* _parent;
 public:
-    XMLVariable();
-    XMLVariable(XMLElement*,string);
-    XMLVariable(XMLElement*,string,string);
-    const string getValue() const;
-    void setValue(string);
-    void setParent(XMLElement*);
-    XMLVariable* operator*(void); 
+    XML_API XMLVariable();
+    XML_API ~XMLVariable();
+    XML_API XMLVariable(XMLElement*,string);
+    XML_API XMLVariable(XMLElement*,string,string);
+
+    XML_API const XMLElement*  ADDCALL getParent() const;
+    XML_API const string ADDCALL getValue() const;
+    XML_API void ADDCALL setValue(string);
+    XML_API void ADDCALL setParent(XMLElement*);
+    XML_API XMLVariable* ADDCALL operator*(void); 
 };
-XML_API std::ostream& operator<<(std::ostream &os,XMLVariable variable);
+std::ostream& operator<<(std::ostream &os,XMLVariable variable);
 
 
 #endif // XMLVARIABLE_H
